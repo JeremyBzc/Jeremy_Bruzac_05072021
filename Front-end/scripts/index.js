@@ -1,11 +1,11 @@
-console.log('Le Javascript fonctionne !');
+
 main()
 
 async function main() {
-    const articles = await getArticles()
+    const cameras = await getArticles()
 
-    for (article of articles) {
-    displayArticle(article)
+    for (camera of cameras) {
+    displayArticle(camera)
     }
 }
 
@@ -14,20 +14,19 @@ function getArticles() {
         .then(function(Res) {
          return Res.json()    
         })
-        
         .catch(function(error) {
             alert("Oups ! Revenez un peu plus tard...")
         })   
 }
 
-function displayArticle(article) {
+function displayArticle(camera) {
     const templateElt = document.getElementById("templateArticle")
     const cloneElt = document.importNode(templateElt.content, true)
 
-    cloneElt.getElementById("card-img").src = article.imageUrl
-    cloneElt.getElementById("card-title").textContent = article.name
-    cloneElt.getElementById("card-text").textContent = article.description
-    cloneElt.getElementById("card-price").textContent = `${article.price / 100}.00€`
+    cloneElt.getElementById("card-img").src = camera.imageUrl
+    cloneElt.getElementById("card-title").textContent = camera.name
+    cloneElt.getElementById("card-text").textContent = camera.description
+    cloneElt.getElementById("card-price").textContent = `${camera.price / 100}.00€`
     
 
     document.getElementById("main").appendChild(cloneElt)

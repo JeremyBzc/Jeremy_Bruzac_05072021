@@ -7,6 +7,9 @@
 
      <!--BOOTSTRAP-->
     <link rel="stylesheet" href="Styles/bootstrap/css/bootstrap.css">
+    <!--JS-->
+    <script src="https://kit.fontawesome.com/a31e139e01.js" crossorigin="anonymous"></script>
+    <script src="scripts/product.js"></script>
 
       <title>Produit - Oniroco</title>
   </head>
@@ -35,29 +38,43 @@
             </div>
         </div>    
         </div>
-    <div class="container">
+    <div class="container" id="main">
       <div class="row">
-        <div class="col">
+        <div class="col m-2">
           <h1>Votre produit:</h1>
         </div>
       </div>
-    </div>
-      
-    <div class="bg-light">
-      <div class="container">
+      <template id="templateArticle">
         <div class="row">
-          <div class="col">
-            <ul class="list-inline text-center">
-              <li class="list-inline-item"><a href="#">À propos</a></li>
-              <li class="list-inline-item">&middot;</li>
-              <li class="list-inline-item"><a href="#">Vie privée</a></li>
-              <li class="list-inline-item">&middot;</li>
-              <li class="list-inline-item"><a href="#">Conditions d'utilisations</a></li>
-            </ul>
+            <div class="col-3 col-lg-4 mx-auto mb-4">
+                <div class="card mb-4 mb-lg-0 border-dark shadow">
+                    <div class="card-body text-center">
+                        <img src=" " id="card-img" class="card-img-top mb-3">
+                        <h5 id="card-title"></h5>
+                        <p id="card-text"></p>
+                        <p id="card-price"></p>
+                        <a href="" ><button class="btn btn-dark">Voir la caméra</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </template>
+    </div>
+      <div class="bg-light">
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <ul class="list-inline text-center">
+                <li class="list-inline-item"><a href="#">À propos</a></li>
+                <li class="list-inline-item">&middot;</li>
+                <li class="list-inline-item"><a href="#">Vie privée</a></li>
+                <li class="list-inline-item">&middot;</li>
+                <li class="list-inline-item"><a href="#">Conditions d'utilisations</a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
