@@ -27,6 +27,8 @@ function displayArticle(camera) {
     cloneElt.getElementById("card-title").textContent = camera.name
     cloneElt.getElementById("card-text").textContent = camera.description
     cloneElt.getElementById("card-price").textContent = `${camera.price / 100}.00€`
+    cloneElt.getElementById("id__product").href += `?id=${camera._id}`
+    
     
 
     document.getElementById("main").appendChild(cloneElt)
