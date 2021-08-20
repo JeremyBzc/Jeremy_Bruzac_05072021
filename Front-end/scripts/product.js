@@ -54,7 +54,7 @@ function injectArticle(camera) {
   addToCart.addEventListener("click", (e) => {
     e.preventDefault()
 
-    // Choix form dans variable
+    // Choix du form dans une variable
     const choiceForm = idForm.value;
     console.log(choiceForm);
 
@@ -64,14 +64,37 @@ function injectArticle(camera) {
     idProduct: camera._id,
     quantité: 1,
     prix: camera.price / 100,
+    Objectif: choiceForm
   }
   console.log(productChoice);
+  // LOCAL STORAGE
+ let productStorage = JSON.parse(localStorage.getItem("product"));
+
+  //Fonction popUp
+  const popupConfirmation = () => {
+    if(window.confirm(`Vous avez ajouté ${camera.name} avec l'objectif ${choiceForm} au panier ! Consultez le panier OK ou revenir à l'accueil ANNULER`)) {
+      window.location.href = "cart.html";
+    }
+    else {
+    window.location.href = "index.html";
+    }
+  }
+
+ // Si produit dans le local storage
+ if(productStorage) {
+  productStorage.push(productChoice);
+  localStorage.setItem("product", JSON.stringify(productStorage));
+  popupConfirmation();
+ 
+ } else { 
+   productStorage = [];
+   productStorage.push(productChoice);
+   localStorage.setItem("product", JSON.stringify(productStorage));
+   console.log(productStorage);
+   popupConfirmation();
+ }
+
   });
-  
-  
+
 }
-
-
-
-
 

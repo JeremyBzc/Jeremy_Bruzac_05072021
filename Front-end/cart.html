@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="Styles/bootstrap/css/bootstrap.css">
     <!--JS-->
     <script src="https://kit.fontawesome.com/a31e139e01.js" crossorigin="anonymous"></script>
-    <script src=""></script>
-
       <title>Oniroco - Commandez !</title>
   </head>
   <body>
@@ -42,50 +40,43 @@
       <div class="row">
         <div class="col">
           <h1>Votre Panier</h1>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <hr>
-          <h3>0 articles dans votre panier:</h3>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-6 mx-auto">
-          <div class="card mb-4 mb-lg-0 border-black shadow">
-            <img src="img/Point-int.jpeg" alt="Point d'interrogation" class="card-img-top">
-            <div class="card-body text-center">
-              <h5 class="card-title">Aucun articles dans votre panier !</h5>
-              <p class="card-text">Continuez vos achats et trouvez votre bonheur</p>
-              <button class="btn btn-dark">Continuez vos achats</button>
-            </div>
+          <div id="cart-container" class="text-center">
+            
           </div>
         </div>
-          
-
+      </div>
     </div>
-      <div class="row">
+    </div>
+      <div class="row container-fluid">
         <div class="col">
           <hr>
-          <h3>Récapitulatif:</h3>
+          <h3>Passer commande:</h3>
           <form>
-            <div class="form-group">
-              <label for="timeInput">Temps :</label>
-              <input type="text" class="form-control" id="timeInput" placeholder="mm:ss" aria-describedby="timeHelp">
+            <div class="form-group col-3">
+              <label for="firstname" class="label">Prénom:</label>
+              <input type="text" name="firstname" id="firstname" class="inputForm" required>
             </div>
-            <div class="form-group">
-              <label for="note">Note :</label>
-              <textarea id="note" rows="5" class="form-control" required></textarea>
+            <div class="form-group col-3">
+              <label for="lastname" class="label">Nom:</label>
+              <input type="text" name="lastname" id="lastname" class="inputForm" required>
             </div>
-            <div class="form-group">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">
-                  Rendre cette notation publique
-                </label>
-              </div>
+            <div class="form-group col-3">
+              <label for="email" class="label">Adresse e-mail:</label>
+              <input type="text" name="email" id="email" class="inputForm" required>
             </div>
-            <button type="submit" class="btn btn-primary">Envoyer</button>
+            <div class="form-group col-3">
+              <label for="adress" class="label">Adresse:</label>
+              <input type="text" name="adress" id="adress" class="inputForm" required>
+            </div>
+            <div class="form-group col-3">
+              <label for="zipcode" class="label">Code postal:</label>
+              <input type="text" name="zipcode" id="zipcode" class="inputForm" required>
+            </div>
+            <div class="form-group col-3">
+              <label for="city" class="label">Ville:</label>
+              <input type="text" name="city" id="city" class="inputForm" required>
+            </div>
+            <button type="submit" class="btn btn-dark">procéder au paiement</button>
           </form>
         </div>
       </div>
@@ -105,8 +96,8 @@
         </div>
       </div>
     </div>
-
-
+    
+    <script src="scripts/cart.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
