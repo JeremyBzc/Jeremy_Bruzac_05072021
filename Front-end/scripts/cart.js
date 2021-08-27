@@ -183,9 +183,9 @@ btnSendForm.addEventListener("click", (e) => {
   e.preventDefault();
 
 //Récupération valeur formulaire
-const formValues = {
-  firstname : document.querySelector("#firstname").value,
-  lastname : document.querySelector("#lastname").value,
+const contact = {
+  firstName : document.querySelector("#firstname").value,
+  lastName : document.querySelector("#lastname").value,
   email : document.querySelector("#email").value,
   adress : document.querySelector("#adress").value,
   zipcode : document.querySelector("#zipcode").value,
@@ -214,7 +214,7 @@ const regExAdress = (value) => {
 
 function firstNameControl() {
   //Controle validité prénom
-  const theFirstName = formValues.firstname;
+  const theFirstName = contact.firstname;
   if(regExFirstLastnameCity(theFirstName)) {
     return true;
   }else {
@@ -225,7 +225,7 @@ function firstNameControl() {
 
 function lastNameControl() {
   //Controle validité nom
-  const theLastName = formValues.lastname;
+  const theLastName = contact.lastname;
   if(regExFirstLastnameCity(theLastName)) {
     return true;
   }else {
@@ -236,7 +236,7 @@ function lastNameControl() {
 
 function zipCodeControl() {
   //Controle validité code postal
-  const theZipcCode = formValues.zipcode;
+  const theZipcCode = contact.zipcode;
   if(regExZipCode(theZipcCode)) {
     return true;
   }else {
@@ -247,7 +247,7 @@ function zipCodeControl() {
 
 function emailControl() {
   //Controle validité email
-  const theEmail = formValues.email;
+  const theEmail = contact.email;
   if(regExEmail(theEmail)) {
     return true;
   }else {
@@ -258,7 +258,7 @@ function emailControl() {
 
 function adressControl() {
   //Controle validité adresse
-  const theAdress = formValues.adress;
+  const theAdress = contact.adress;
   if(regExAdress(theAdress)) {
     return true;
   }else {
@@ -269,7 +269,7 @@ function adressControl() {
 
 function cityControl() {
   //Controle validité ville
-  const theCity = formValues.city;
+  const theCity = contact.city;
   if(regExFirstLastnameCity(theCity)) {
     return true;
   }else {
@@ -287,7 +287,7 @@ const products = [];
 //Controle validité formulaire avant envoie dans le local storage
 if(firstNameControl() && lastNameControl() && zipCodeControl() && emailControl() && adressControl() && cityControl()) {
 // Mettre l'objet form dans le local storage
-localStorage.setItem("FormValues", JSON.stringify(formValues));
+localStorage.setItem("contact", JSON.stringify(contact));
 
 } else {
   alert("Veuillez bien remplir le formulaire");
@@ -295,15 +295,14 @@ localStorage.setItem("FormValues", JSON.stringify(formValues));
 }
 // Valeurs formulaire et produits dans un objet à envoyer au serveur
 const toSend = {
+  contact,
   products,
-  formValues,
 }
-console.log(formValues);
-console.log(products);
+const toSendJson = JSON.stringify(toSend) 
 
 const order = fetch(`http://localhost:3000/api/cameras/order`, {
   method: 'POST',
-  body: JSON.stringify(toSend),
+  body: toSendJson,
   headers: {
     "Content-Type" : "application/json",
   },
@@ -312,8 +311,10 @@ const order = fetch(`http://localhost:3000/api/cameras/order`, {
 order.then(async(res) => {
   try{
     const content = await res.json();
+    console.log(content);
     localStorage.setItem("orderId", products);
-    document.location.href = "checkorder.html";
+    //document.location.href = "checkorder.html";
+
    
 
   }catch(e){
