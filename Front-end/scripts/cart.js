@@ -6,7 +6,7 @@ console.log(productStorage);
 const displayCart = document.querySelector('#cart-container');
 
 // Si panier vide => Afficher le panier vide
-if(productStorage === null) {
+if(productStorage === null || productStorage == 0) {
   const emptyCart = `
   <div class="empty-cart col-6 mx-auto">
     <h2>Votre Panier est vide.</h2>
@@ -59,22 +59,30 @@ if(productStorage === null) {
 }
 // Supprimer un article du panier //
 
-let deleteItem = document.querySelectorAll(".fa-trash-alt");
+let deleteItem = document.querySelectorAll(".delete-item");
 console.log(deleteItem);
 
-for(l = 0; l < deleteItem.length; l++) {
-  deleteItem[l].addEventListener("click", (event) => {
+// Select id de l'article à supprimer //
+for (let l = 0; l < deleteItem.length; l++) {
+  deleteItem[l].addEventListener("click" , (event) => {
     event.preventDefault();
-    console.log(event);
-
+    
     let idDelete = productStorage[l].idProduct;
-   
+    console.log(idDelete);
 
+    // Méthode filter : par éliminations, on garde les éléments autre que le bouton supp cliqué
+    productStorage = productStorage.filter( el => el.idProduct !== idDelete);
+    console.log(productStorage);
 
-//A COMPLETER
+    //Maj local storage
+    localStorage.setItem("product", JSON.stringify(productStorage));
+    alert("Ce produit a bien été supprimé du panier ! ");
+    window.location.href = "cart.html";
 
   })
 }
+
+
 
 // ********Vider totalement le panier**********//
 
@@ -182,156 +190,146 @@ const btnSendForm = document.querySelector("#btn-form");
 btnSendForm.addEventListener("click", (e) => {
   e.preventDefault();
 
-//Récupération valeur formulaire
-const contact = {
-  firstName : document.querySelector("#firstname").value,
-  lastName : document.querySelector("#lastname").value,
-  email : document.querySelector("#email").value,
-  adress : document.querySelector("#adress").value,
-  zipcode : document.querySelector("#zipcode").value,
-  city : document.querySelector("#city").value
-}
-
-//*************Controle du formulaire avec les REGEX***********//
-const textAlert = (value) => {
-  return `${value}: Chiffre et symbole ne sont pas autorisés`;
-};
-
-const regExFirstLastnameCity = (value) => {
-  return /^[A-Za-z]{3,20}$/.test(value);
-};
-const regExZipCode = (value) => {
-  return /^[0-9]{5}$/.test(value);
-};
-
-const regExEmail = (value) => {
-  return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value);
-};
-
-const regExAdress = (value) => {
-  return /^[A-Za-z0-9\s]{5,50}$/.test(value);
-}
-
-function firstNameControl() {
-  //Controle validité prénom
-  const theFirstName = contact.firstname;
-  if(regExFirstLastnameCity(theFirstName)) {
-    return true;
-  }else {
-    alert(textAlert("Prénom"));
-    return false;
+  //Récupération valeur formulaire
+  const contact = {
+    firstName : document.querySelector("#firstname").value,
+    lastName : document.querySelector("#lastname").value,
+    email : document.querySelector("#email").value,
+    address : document.querySelector("#adress").value,
+    zipcode : document.querySelector("#zipcode").value,
+    city : document.querySelector("#city").value
   }
-}
 
-function lastNameControl() {
-  //Controle validité nom
-  const theLastName = contact.lastname;
-  if(regExFirstLastnameCity(theLastName)) {
-    return true;
-  }else {
-    alert(textAlert("Nom"));
-    return false;
-  }
-}
+  //*************Controle du formulaire avec les REGEX***********//
+  const textAlert = (value) => {
+    return `${value}: Chiffre et symbole ne sont pas autorisés`;
+  };
 
-function zipCodeControl() {
-  //Controle validité code postal
-  const theZipcCode = contact.zipcode;
-  if(regExZipCode(theZipcCode)) {
-    return true;
-  }else {
-    alert("Code Postal: doit être composé de 5 chiffres");
-    return false;
-  }
-}
+  const regExFirstLastnameCity = (value) => {
+    return /^[A-Za-z]{3,20}$/.test(value);
+  };
+  const regExZipCode = (value) => {
+    return /^[0-9]{5}$/.test(value);
+  };
 
-function emailControl() {
-  //Controle validité email
-  const theEmail = contact.email;
-  if(regExEmail(theEmail)) {
-    return true;
-  }else {
-    alert("L'email n'est pas valide: doit contenir @ et '.' ");
-    return false;
-  }
-}
+  const regExEmail = (value) => {
+    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value);
+  };
 
-function adressControl() {
-  //Controle validité adresse
-  const theAdress = contact.adress;
-  if(regExAdress(theAdress)) {
-    return true;
-  }else {
-    alert("L'adresse doit contenir que des lettres et des chiffres");
-    return false;
+  const regExAdress = (value) => {
+    return /^[A-Za-z0-9\s]{5,50}$/.test(value);
   }
-}
 
-function cityControl() {
-  //Controle validité ville
-  const theCity = contact.city;
-  if(regExFirstLastnameCity(theCity)) {
-    return true;
-  }else {
-    alert("La ville doit contenir que des lettres");
-    return false;
-  }
-}
-/////////
-const products = [];
-    for (let t = 0; t < productStorage.length; t++) {
-        let getId = productStorage[t].idProduct;
-        products.push(getId);
+  function firstNameControl() {
+    //Controle validité prénom
+    const theFirstName = contact.firstname;
+    if(regExFirstLastnameCity(theFirstName)) {
+      return true;
+    }else {
+      alert(textAlert("Prénom"));
+      return false;
     }
+  }
 
-//Controle validité formulaire avant envoie dans le local storage
+  function lastNameControl() {
+    //Controle validité nom
+    const theLastName = contact.lastname;
+    if(regExFirstLastnameCity(theLastName)) {
+      return true;
+    }else {
+      alert(textAlert("Nom"));
+      return false;
+    }
+  }
+
+  function zipCodeControl() {
+    //Controle validité code postal
+    const theZipcCode = contact.zipcode;
+    if(regExZipCode(theZipcCode)) {
+      return true;
+    }else {
+      alert("Code Postal: doit être composé de 5 chiffres");
+      return false;
+    }
+  }
+
+  function emailControl() {
+    //Controle validité email
+    const theEmail = contact.email;
+    if(regExEmail(theEmail)) {
+      return true;
+    }else {
+      alert("L'email n'est pas valide: doit contenir @ et '.' ");
+      return false;
+    }
+  }
+
+  function adressControl() {
+    //Controle validité adresse
+    const theAdress = contact.adress;
+    if(regExAdress(theAdress)) {
+      return true;
+    }else {
+      alert("L'adresse doit contenir que des lettres et des chiffres");
+      return false;
+    }
+  }
+
+  function cityControl() {
+    //Controle validité ville
+    const theCity = contact.city;
+    if(regExFirstLastnameCity(theCity)) {
+      return true;
+    }else {
+      alert("La ville doit contenir que des lettres");
+      return false;
+    }
+  }
+  /////////
+  const products = [];
+      for (let t = 0; t < productStorage.length; t++) {
+          let getId = productStorage[t].idProduct;
+          products.push(getId);
+      }
+
+  //Controle validité formulaire avant envoie dans le local storage
 if(firstNameControl() && lastNameControl() && zipCodeControl() && emailControl() && adressControl() && cityControl()) {
-// Mettre l'objet form dans le local storage
-localStorage.setItem("contact", JSON.stringify(contact));
-
+  // Mettre l'objet form dans le local storage
+  localStorage.setItem("contact", JSON.stringify(contact));
+  
 } else {
   alert("Veuillez bien remplir le formulaire");
- 
+  return
 }
 // Valeurs formulaire et produits dans un objet à envoyer au serveur
-const toSend = {
-  contact,
-  products,
-}
-const toSendJson = JSON.stringify(toSend) 
-
-const order = fetch(`http://localhost:3000/api/cameras/order`, {
-  method: 'POST',
-  body: toSendJson,
-  headers: {
-    "Content-Type" : "application/json",
-  },
-});
-// Résultat du serveur
-order.then(async(res) => {
-  try{
-    const content = await res.json();
-    console.log(content);
-    localStorage.setItem("orderId", products);
-    //document.location.href = "checkorder.html";
-
-   
-
-  }catch(e){
-    alert(error);
+  const toSend = {
+    contact,
+    products,
   }
-})
+  const toSendJson = JSON.stringify(toSend);
+  
+  const order = fetch(`http://localhost:3000/api/cameras/order`, {
+    method: 'POST',
+    body: toSendJson,
+    headers: {
+      "Content-Type" : "application/json",
+    },
+  });
+  // Résultat du serveur
+  order.then(async(res) => {
+    try{
+      const content = await res.json();
+      console.log(content);
+      localStorage.setItem("orderId", content.orderId);
+      document.location.href = "checkorder.html";
 
+    }catch(e){
+      alert(error)
+    }
+  })
 
-
-
-
-
-
-
-
-
-})
+  
+});
 
 
 

@@ -1,6 +1,6 @@
 // Récupération ID de la commande
 const resId = localStorage.getItem("orderId");
-
+console.log(resId);
 // Injection HTML
 
 const displayOrder = document.querySelector("#checkorder-container");
