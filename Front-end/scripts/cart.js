@@ -84,11 +84,18 @@ for (let l = 0; l < deleteItem.length; l++) {
 
 // ********Vider totalement le panier**********//
 
-//Injecter le bouton HTML 
+//Injecter bouton HTML Supp ou retourner achats
 const btnAllDeleteHtml = `
 <button class="btn-delete btn-danger rounded">Vider le panier</button>`;
 
+const btnContinue = `
+<a href="index.html" class="btn btn-dark rounded">Continuer vos achats</a>`;
+
+if (productStorage !== null) {
 displayCart.insertAdjacentHTML("beforeend", btnAllDeleteHtml);
+} else {
+displayCart.insertAdjacentHTML("beforeend", btnContinue);
+}
 
 //On selectionne le bouton
 const btnAllDelete = document.querySelector(".btn-delete");
@@ -130,7 +137,7 @@ console.log(totalPrice);
 
 //Le code Html du prix total à afficher 
 const DisplayTotalPriceHtml = `
-<div class="total-price bg-light"><strong>Total: ${totalPrice}€</strong></div>`;
+<div class="total-price bg-light d-flex justify-content-end"><strong>Total: ${totalPrice}€</strong></div>`;
 
 // Injecter dans le html
 displayCart.insertAdjacentHTML("afterend", DisplayTotalPriceHtml);
