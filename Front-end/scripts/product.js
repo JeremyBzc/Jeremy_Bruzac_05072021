@@ -28,12 +28,12 @@ function injectArticle(camera) {
   document.getElementById("card-text").textContent = camera.description;
   document.getElementById("card-price").textContent = `${camera.price / 100}.00€`;
   document.getElementById("choice").innerHTML +=
-  `<form>
-    <label for="lensesChoice">Choisissez un objectif :</label>
+  `<form class="d-flex flex-column align-items-center">
+    <label class="m-3" for="lensesChoice">Choisissez un objectif :</label>
     <select class="lenseOption name="lense id="lensesChoice" required>
       <option value=""</option>
     </select>
-    <button id="addToCart" type="submit" class="btn btn-dark">Ajouter au panier</button>
+    <button id="addToCart" type="submit" class="btn btn-dark m-3">Ajouter au panier</button>
   </form>`;
 
   const optionSelect = camera.lenses;
