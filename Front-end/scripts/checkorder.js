@@ -15,12 +15,12 @@ const structureOrder = `
 displayOrder.insertAdjacentHTML("afterbegin", structureOrder);
 
 // Supprimer Local Storage
-/*
+
 function deleteKeyLS(key) {
     localStorage.removeItem(key)
 };
 
 deleteKeyLS("orderId")
 deleteKeyLS("product")
-*/
+
 

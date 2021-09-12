@@ -59,22 +59,22 @@ if(productStorage === null || productStorage == 0) {
 }
 // Supprimer un article du panier //
 
-let deleteItem = document.querySelectorAll(".delete-item");
-console.log(deleteItem);
+let deleteItem = Array.from(document.querySelectorAll(".delete-item"));
+let tab = [];
 
 // Select id de l'article à supprimer //
 for (let l = 0; l < deleteItem.length; l++) {
   deleteItem[l].addEventListener("click" , (event) => {
     event.preventDefault();
     
-    let idDelete = productStorage[l].idProduct;
+    deleteItem[l].parentElement.style.display ="none";
+    tab = productStorage;
+    // Méthode slice : A partir de l'élément cliqué on le retire du tab ( puis re-injection)
+    tab.splice([l], 1);
+    productStorage = localStorage.setItem("product", JSON.stringify(tab));
     
-
-    // Méthode filter : par éliminations, on garde les éléments autre que le bouton supp cliqué
-    productStorage = productStorage.filter( el => el.idProduct !== idDelete);
-
+    
     //Maj local storage
-    localStorage.setItem("product", JSON.stringify(productStorage));
     alert("Ce produit a bien été supprimé du panier ! ");
     window.location.href = "cart.html";
 
