@@ -31,7 +31,6 @@ function injectArticle(camera) {
   `<form class="d-flex flex-column align-items-center">
     <label class="m-3" for="lensesChoice">Choisissez un objectif :</label>
     <select class="lenseOption name="lense id="lensesChoice" required>
-      <option value=""</option>
     </select>
     <button id="addToCart" type="submit" class="btn btn-dark m-3">Ajouter au panier</button>
   </form>`;
@@ -72,7 +71,7 @@ function injectArticle(camera) {
 
   //Fonction popUp
   const popupConfirmation = () => {
-    if(window.confirm(`Vous avez ajouté ${camera.name} avec l'objectif ${choiceForm} au panier ! Consultez le panier OK ou revenir à l'accueil ANNULER`)) {
+    if(window.confirm(`Vous avez ajouté ${camera.name} avec l'objectif ${choiceForm} au panier ! Consultez votre panier ?`)) {
       window.location.href = "cart.html";
     }
     else {

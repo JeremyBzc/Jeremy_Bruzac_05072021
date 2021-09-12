@@ -253,7 +253,7 @@ btnSendForm.addEventListener("click", (e) => {
     if(regExZipCode(theZipcCode)) {
       return true;
     }else {
-      alert("Code Postal: doit être composé de 5 chiffres");
+      alert("Champ requis");
       return false;
     }
   }
