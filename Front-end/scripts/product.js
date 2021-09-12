@@ -1,4 +1,4 @@
-// 1- ON RÉCUPÈRE L'ID DE NOTRE URL
+//*****1/RECUP ID DE NOTRE URL*****//
 (async function () {
   const idArticle = getArticleId();
   const cameraData = await getArticle(idArticle);
@@ -92,8 +92,6 @@ function injectArticle(camera) {
    console.log(productStorage);
    popupConfirmation();
  }
-
   });
-
 }
 

@@ -2,7 +2,7 @@
 let productStorage = JSON.parse(localStorage.getItem("product"));
 console.log(productStorage);
 
-// AFFICHAGE PRODUIT DANS LE PANIER //
+//*****1-AFFICHAGE PRODUIT DANS LE PANIER***** //
 const displayCart = document.querySelector('#cart-container');
 
 // Si panier vide => Afficher le panier vide
@@ -72,8 +72,7 @@ for (let l = 0; l < deleteItem.length; l++) {
     // Méthode slice : A partir de l'élément cliqué on le retire du tab ( puis re-injection)
     tab.splice([l], 1);
     productStorage = localStorage.setItem("product", JSON.stringify(tab));
-    
-    
+
     //Maj local storage
     alert("Ce produit a bien été supprimé du panier ! ");
     window.location.href = "cart.html";
@@ -81,7 +80,7 @@ for (let l = 0; l < deleteItem.length; l++) {
   })
 }
 
-// ********Vider totalement le panier**********//
+//*****2-VIDER TOTALEMENT PANIER*****//
 
 //Injecter bouton HTML Supp ou retourner achats
 const btnAllDeleteHtml = `
@@ -96,7 +95,7 @@ displayCart.insertAdjacentHTML("afterend", btnAllDeleteHtml);
 displayCart.insertAdjacentHTML("beforeend", btnContinue);
 }
 
-//On selectionne le bouton
+//Selection bouton
 const btnAllDelete = document.querySelector(".btn-delete");
 
 //Suppression de la key product du local Storage pour vider le panier
@@ -112,7 +111,7 @@ btnAllDelete.addEventListener('click', (e) => {
 
 })
 
-// ********On calcule le total du panier**********//
+//*****3-On calcule le total du panier*****//
 
 // Variable contenant les prix présents dans le panier
 
@@ -140,7 +139,7 @@ const DisplayTotalPriceHtml = `
 // Injecter dans le html
 displayCart.insertAdjacentHTML("beforeend", DisplayTotalPriceHtml);
 
-// ********Le Formulaire**********//
+//*****4-Le Formulaire*****//
 
 const displayFormHtml = () => {
   //Sélectionner élément DOM pour positionnnement formulaire
@@ -188,7 +187,7 @@ displayFormHtml ();
 //Selection du bouton "envoyer la commande"
 const btnSendForm = document.querySelector("#btn-form");
 
-//*******AddEventlisttener**************/
+//*****5-AddEventlisttener*****//
 
 btnSendForm.addEventListener("click", (e) => {
   e.preventDefault();
@@ -203,7 +202,7 @@ btnSendForm.addEventListener("click", (e) => {
     city : document.querySelector("#city").value
   }
 
-  //*************Controle du formulaire avec les REGEX***********//
+  //*****6-Controle du formulaire avec les REGEX*****//
   const textAlert = (value) => {
     return `${value}: Chiffre et symbole ne sont pas autorisés`;
   };
@@ -330,8 +329,6 @@ if(firstNameControl() && lastNameControl() && zipCodeControl() && emailControl()
       alert(error)
     }
   })
-
-  
 });
 
 

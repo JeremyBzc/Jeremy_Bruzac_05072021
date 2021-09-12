@@ -8,7 +8,7 @@ async function main() {
     displayArticle(camera)
     }
 }
-
+// Appel Api, méthode GET
 function getArticles() {
     return fetch("http://localhost:3000/api/cameras")
         .then((Res) => {
@@ -18,7 +18,7 @@ function getArticles() {
             alert("Oups ! Revenez un peu plus tard...")
         })   
 }
-
+// Affichage des produits
 function displayArticle(camera) {
     const templateElt = document.getElementById("templateArticle")
     const cloneElt = document.importNode(templateElt.content, true)
