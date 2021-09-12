@@ -148,34 +148,34 @@ const displayFormHtml = () => {
   console.log(displayForm);
 
   const structureFrom = `
-        <div class="container-fluid"> 
+        <div class="container-fluid d-flex flex-column align-items-sm-center bg-light mb-5"> 
           <h2>Passez commande</h2>
-          <form class="col-2 mx-auto">
-            <div class="form-group text-center">
+          <form class="col-10 col-md-2 col-lg-2 mx-auto">
+            <div class="form-group">
               <label for="firstname" class="label">Prénom:</label>
               <input type="text" name="firstname" id="firstname" class="inputForm" required>
             </div>
-            <div class="form-group text-center">
+            <div class="form-group">
               <label for="lastname" class="label">Nom:</label>
               <input type="text" name="lastname" id="lastname" class="inputForm" required>
             </div>
-            <div class="form-group text-center">
+            <div class="form-group">
               <label for="email" class="label">Adresse e-mail:</label>
               <input type="text" name="email" id="email" class="inputForm" required>
             </div>
-            <div class="form-group text-center">
+            <div class="form-group">
               <label for="adress" class="label">Adresse:</label>
               <input type="text" name="adress" id="adress" class="inputForm" required>
             </div>
-            <div class="form-group text-center">
+            <div class="form-group">
               <label for="zipcode" class="label">Code postal:</label>
               <input type="text" name="zipcode" id="zipcode" class="inputForm" required>
             </div>
-            <div class="form-group text-center">
+            <div class="form-group">
               <label for="city" class="label">Ville:</label>
               <input type="text" name="city" id="city" class="inputForm" required>
-            </div>
-            <button type="submit" id="btn-form" class="btn btn-dark my-3 w-100">Envoyer la commande</button>
+            </div>  
+            <button type="submit" id="btn-form" class="btn btn-dark my-3">Envoyer la commande</button>
           </form>
         </div>`;
     

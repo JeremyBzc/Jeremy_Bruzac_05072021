@@ -5,7 +5,7 @@ console.log(resId);
 
 const displayOrder = document.querySelector("#checkorder-container");
 const structureOrder = `
-<div class="row">
+<div class="row mb-5">
     <div class="col mx-auto bg-light border border-dark rounded">
     <p>Votre commande numéro <span class="text-danger text-uppercase">${resId}</span> à bien été prise en compte !</p>
     <p>Nous vous remercions pour votre confiance !</p>
