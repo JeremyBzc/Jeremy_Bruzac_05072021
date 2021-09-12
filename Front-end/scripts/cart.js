@@ -8,7 +8,7 @@ const displayCart = document.querySelector('#cart-container');
 // Si panier vide => Afficher le panier vide
 if(productStorage === null || productStorage == 0) {
   const emptyCart = `
-  <div class="empty-cart col-6 mx-auto">
+  <div class="empty-cart col-6 mx-auto my-5">
     <h2>Votre Panier est vide.</h2>
     <img src="img/Point-int.jpeg" alt="Point d'interrogation" class="card-img-top">
   </div>`
@@ -22,10 +22,10 @@ if(productStorage === null || productStorage == 0) {
       <table class="w-100">
         <thead>
           <tr class="bg-light border-2">
-            <th>Produit</th>
-            <th>Objectif</th>
-            <th>Prix</th>
-            <th>Supp.</th>
+            <th class="col-3">Produit</th>
+            <th class="col-3">Objectif</th>
+            <th class="col-3">Prix</th>
+            <th class="col-3">Supp.</th>
           </tr>
         </thead>
       </table>
@@ -39,11 +39,11 @@ if(productStorage === null || productStorage == 0) {
       <div class="col">
         <table class="w-100">
           <thead>
-            <tr class="bg-light d-flex justify-content-around">
-              <th class="product-item">${productStorage[k].nom}</th>
-              <th class="objectif-item">${productStorage[k].Objectif}</th>
-              <th class="price-item">${productStorage[k].prix}€</th>
-              <th><button class="delete-item btn btn-danger"><i class="fas fa-trash-alt"></i></button></th>
+            <tr class="bg-light">
+              <th class="col-3">${productStorage[k].nom}</th>
+              <th class="col-3">${productStorage[k].Objectif}</th>
+              <th class="col-3">${productStorage[k].prix}€</th>
+              <th class="col-3"><button class="delete-item btn btn-danger"><i class="fas fa-trash-alt"></i></button></th>
             </tr>
           </thead>
         </table>
@@ -68,11 +68,10 @@ for (let l = 0; l < deleteItem.length; l++) {
     event.preventDefault();
     
     let idDelete = productStorage[l].idProduct;
-    console.log(idDelete);
+    
 
     // Méthode filter : par éliminations, on garde les éléments autre que le bouton supp cliqué
     productStorage = productStorage.filter( el => el.idProduct !== idDelete);
-    console.log(productStorage);
 
     //Maj local storage
     localStorage.setItem("product", JSON.stringify(productStorage));
@@ -86,20 +85,19 @@ for (let l = 0; l < deleteItem.length; l++) {
 
 //Injecter bouton HTML Supp ou retourner achats
 const btnAllDeleteHtml = `
-<button class="btn-delete btn-danger rounded">Vider le panier</button>`;
+<div class="d-flex justify-content-center"><button class="btn-delete btn-danger rounded">Vider le panier</button></div>`;
 
 const btnContinue = `
-<a href="index.html" class="btn btn-dark rounded">Continuer vos achats</a>`;
+<a href="index.html" class="btn btn-dark rounded mb-5">Continuer vos achats</a>`;
 
 if (productStorage !== null) {
-displayCart.insertAdjacentHTML("beforeend", btnAllDeleteHtml);
+displayCart.insertAdjacentHTML("afterend", btnAllDeleteHtml);
 } else {
 displayCart.insertAdjacentHTML("beforeend", btnContinue);
 }
 
 //On selectionne le bouton
 const btnAllDelete = document.querySelector(".btn-delete");
-console.log(btnAllDelete);
 
 //Suppression de la key product du local Storage pour vider le panier
 btnAllDelete.addEventListener('click', (e) => {
@@ -137,10 +135,10 @@ console.log(totalPrice);
 
 //Le code Html du prix total à afficher 
 const DisplayTotalPriceHtml = `
-<div class="total-price bg-light d-flex justify-content-end"><strong>Total: ${totalPrice}€</strong></div>`;
+<div class="total-price d-flex justify-content-end"><strong>Total: ${totalPrice}€</strong></div>`;
 
 // Injecter dans le html
-displayCart.insertAdjacentHTML("afterend", DisplayTotalPriceHtml);
+displayCart.insertAdjacentHTML("beforeend", DisplayTotalPriceHtml);
 
 // ********Le Formulaire**********//
 
