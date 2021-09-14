@@ -75,7 +75,7 @@ function injectArticle(camera) {
       window.location.href = "cart.html";
     }
     else {
-    window.location.href = "index.html";
+    window.location.href = "../index.html";
     }
   }
 

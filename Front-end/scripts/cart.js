@@ -87,7 +87,7 @@ const btnAllDeleteHtml = `
 <div class="d-flex justify-content-center"><button class="btn-delete btn-danger rounded">Vider le panier</button></div>`;
 
 const btnContinue = `
-<a href="index.html" class="btn btn-dark rounded mb-5">Continuer vos achats</a>`;
+<a href="../index.html" class="btn btn-dark rounded mb-5">Continuer vos achats</a>`;
 
 if (productStorage !== null) {
 displayCart.insertAdjacentHTML("afterend", btnAllDeleteHtml);
@@ -203,12 +203,9 @@ btnSendForm.addEventListener("click", (e) => {
   }
 
   //*****6-Controle du formulaire avec les REGEX*****//
-  const textAlert = (value) => {
-    return `${value}: Chiffre et symbole ne sont pas autorisés`;
-  };
-
+  
   const regExFirstLastnameCity = (value) => {
-    return /^[A-Za-z]{3,20}$/.test(value);
+    return /^[A-Za-z]{3,25}$/.test(value);
   };
   const regExZipCode = (value) => {
     return /^[0-9]{5}$/.test(value);
@@ -224,33 +221,23 @@ btnSendForm.addEventListener("click", (e) => {
 
   function firstNameControl() {
     //Controle validité prénom
-    const theFirstName = contact.firstname;
+    const theFirstName = contact.firstName;
     if(regExFirstLastnameCity(theFirstName)) {
       return true;
-    }else {
-      alert(textAlert("Prénom"));
+    }
+    else {
+      alert("Veuiller rentrer un prénom valide");
       return false;
     }
   }
 
   function lastNameControl() {
     //Controle validité nom
-    const theLastName = contact.lastname;
+    const theLastName = contact.lastName;
     if(regExFirstLastnameCity(theLastName)) {
       return true;
     }else {
-      alert(textAlert("Nom"));
-      return false;
-    }
-  }
-
-  function zipCodeControl() {
-    //Controle validité code postal
-    const theZipcCode = contact.zipcode;
-    if(regExZipCode(theZipcCode)) {
-      return true;
-    }else {
-      alert("Champ requis");
+      alert("Veuiller rentrer un nom valide");
       return false;
     }
   }
@@ -265,14 +252,23 @@ btnSendForm.addEventListener("click", (e) => {
       return false;
     }
   }
-
+  function zipCodeControl() {
+    //Controle validité code postal
+    const theZipcCode = contact.zipcode;
+    if(regExZipCode(theZipcCode)) {
+      return true;
+    }else {
+      alert("Code postal: doit contenir uniquement des chiffres!");
+      return false;
+    }
+  }
   function adressControl() {
     //Controle validité adresse
-    const theAdress = contact.adress;
+    const theAdress = contact.address;
     if(regExAdress(theAdress)) {
       return true;
     }else {
-      alert("L'adresse doit contenir que des lettres et des chiffres");
+      alert("Adresse: doit contenir que des lettres et des chiffres");
       return false;
     }
   }
@@ -283,7 +279,7 @@ btnSendForm.addEventListener("click", (e) => {
     if(regExFirstLastnameCity(theCity)) {
       return true;
     }else {
-      alert("La ville doit contenir que des lettres");
+      alert("Ville: doit contenir seulement des lettres !");
       return false;
     }
   }
@@ -295,7 +291,7 @@ btnSendForm.addEventListener("click", (e) => {
       }
 
   //Controle validité formulaire avant envoie dans le local storage
-if(firstNameControl() && lastNameControl() && zipCodeControl() && emailControl() && adressControl() && cityControl()) {
+if(firstNameControl() && lastNameControl() && emailControl() && adressControl() && zipCodeControl() && cityControl()) {
   // Mettre l'objet form dans le local storage
   localStorage.setItem("contact", JSON.stringify(contact));
   
